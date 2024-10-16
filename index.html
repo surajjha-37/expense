@@ -42,8 +42,7 @@ document.getElementById('category').value;
 const url =
 "https://script.google.com/macros/s/AKfycbzIX78_1lexVlrSkttu6F3XfnpRio2vlCEPwVv3bnTl6DuWIDIg_ut_7yn3RPV6DVzS3g/exec";
 const dataObject = { date: date,description:
-description,amount: amount,category: category }; //
-Replace with your data object
+description,amount: amount,category: category };
 console.log("Date Object",dataObject)
 const requestOptions = {
 redirect: "follow",
@@ -60,8 +59,7 @@ fetch(url, requestOptions)
 .then(response => response.json())
 .then(result => {
 console.log('Success:', result);
-showToast(); // Show toast notification on
-success
+showToast();
 })
 .catch(error => {
 console.error('Error:', error);
