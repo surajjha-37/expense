@@ -1,92 +1,79 @@
+<!DOCTYPE html>
 <html>
 <head>
-<base target="_top">
-<style>
-#toast {
-visibility: hidden;
-min-width: 250px;
-margin-left: 125px;
-background-color: #333;
-color: #e64646;
-text-align: center;
-border-radius: 2px;
-padding: 16px;
-position: fixed;
-z-index: 1;
-left: 50%;
-bottom: 30px;
-font-size: 17px;
+  <base target="_top">
+  <style>
+     #toast {
+      visibility: hidden;
+      min-width: 250px;
+      margin-left: 125px;
+      background-color: #333;
+      color: #e64646;
+      text-align: center;
+      border-radius: 2px;
+      padding: 16px;
+      position: fixed;
+      z-index: 1;
+      left: 50%;
+      bottom: 30px;
+      font-size: 17px;
+    }
+  </style>
+  <script>
+    function showToast() {
+  var toast = document.getElementById("toast");
+  toast.style.visibility = "visible";
+  setTimeout(function() {
+    toast.style.visibility = "hidden";
+  }, 3000);
 }
-</style>
-<script>
-function showToast() {
-var toast = document.getElementById("toast");
 
-toast.style.visibility = "visible";
-setTimeout(function() {
-toast.style.visibility = "hidden";
-}, 3000);
-}
 
-function addExpense() {
-var date =
-document.getElementById('date').value;
-var description =
-document.getElementById('description').value;
-var amount =
-document.getElementById('amount').value;
-var category =
-document.getElementById('category').value;
+    function addExpense() {
+      var date = document.getElementById('date').value;
+      var description = document.getElementById('description').value;
+      var amount = document.getElementById('amount').value;
+      var category = document.getElementById('category').value;
 
-const url =
-"https://script.google.com/macros/s/AKfycbzIX78_1lexVlrSkttu6F3XfnpRio2vlCEPwVv3bnTl6DuWIDIg_ut_7yn3RPV6DVzS3g/exec";
-const dataObject = { date: date,description:
-description,amount: amount,category: category };
-console.log("Date Object",dataObject)
-const requestOptions = {
-redirect: "follow",
-
-method: 'POST',
-headers: {
-"Content-Type":
-"text/plain;charset=utf-8",
-
-},
-body: JSON.stringify(dataObject),
-};
-fetch(url, requestOptions)
-.then(response => response.json())
-.then(result => {
-console.log('Success:', result);
-showToast();
-})
-.catch(error => {
-console.error('Error:', error);
-});
-}
-</script>
+      const url = 'https://script.google.com/macros/s/AKfycbzIX78_1lexVlrSkttu6F3XfnpRio2vlCEPwVv3bnTl6DuWIDIg_ut_7yn3RPV6DVzS3g/exec'; // Replace with your API endpoint
+      const dataObject = { date: date,description: description,amount: amount,category: category }; // Replace with your data object
+      console.log("Date Object",dataObject)
+      const requestOptions = {
+        redirect: "follow",
+        method: 'POST',
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8",
+        },
+        body: JSON.stringify(dataObject),
+      };
+      fetch(url, requestOptions)
+    .then(response => response.json())
+    .then(result => {
+      console.log('Success:', result);
+      showToast(); // Show toast notification on success
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+    }
+  </script>
 </head>
 <body>
-<h2>Monthly Expenses</h2>
-<form id="expenseForm"
-onsubmit="event.preventDefault(); addExpense();"
-<label for="date">Date:</label>
-<input type="date" id="date" required><br><br>
-<label for="description">Description:</label>
-<input type="text" id="description"
-
-required><br><br>
-<label for="amount">Amount:</label>
-
-<input type="number" id="amount"
-required><br><br>
-<label for="category">Category:</label>
-<input type="text" id="category"
-required><br><br>
-<input type="submit" value="Add Expense">
-</form>
-<div id="toast">
-Expense added successfully!
-</div>
+  <h2>Monthly Expenses</h2>
+  <form id="expenseForm" onsubmit="event.preventDefault(); addExpense();">
+    <label for="date">Date:</label>
+    <input type="date" id="date" required><br><br>
+    <label for="description">Description:</label>
+    <input type="text" id="description" required><br><br>
+    <label for="amount">Amount:</label>
+   
+    <input type="number" id="amount" required><br><br>
+    <label for="category">Category:</label>
+    <input type="text" id="category" required><br><br>
+    <input type="submit" value="Add Expense">
+  </form>
+  <div id="toast">
+    Expense added successfully!
+  </div>
 </body>
 </html>
