@@ -22,6 +22,7 @@ font-size: 17px;
 <script>
 function showToast() {
 var toast = document.getElementById("toast");
+
 toast.style.visibility = "visible";
 setTimeout(function() {
 toast.style.visibility = "hidden";
@@ -39,12 +40,14 @@ var category =
 document.getElementById('category').value;
 
 const url =
-'https://script.google.com/macros/s/AKfycbz6bxWiq509TreLipTAKFMgZlMZjfXMgHeQ9DWm0VfW9VWoqauHaM7_5rJe_6Nc2e4HRQ/exec';
+"https://script.google.com/macros/s/AKfycbzR6u5ROuwta2gXT4jzDN3U6VOeW0G4Pf1E-uD7N6ZujF_G68tuFNEbjEtqvD-Pnbn-sA/exec";
 const dataObject = { date: date,description:
-description,amount: amount,category: category };
+description,amount: amount,category: category }; //
+Replace with your data object
 console.log("Date Object",dataObject)
 const requestOptions = {
 redirect: "follow",
+
 method: 'POST',
 headers: {
 "Content-Type":
@@ -74,6 +77,7 @@ onsubmit="event.preventDefault(); addExpense();">
 <input type="date" id="date" required><br><br>
 <label for="description">Description:</label>
 <input type="text" id="description"
+
 required><br><br>
 <label for="amount">Amount:</label>
 
